@@ -46,34 +46,6 @@ print(pull_files.head())
 
 
 
-```python
-%%nose
-
-import pandas as pd
-
-def test_pulls_one():
-    correct_pulls_one = pd.read_csv('datasets/pulls_2011-2013.csv')
-    assert correct_pulls_one.equals(pulls_one), \
-    "Read in 'datasets/pulls_2011-2013.csv' using read_csv()."
-
-def test_pulls_two():
-    correct_pulls_two = pd.read_csv('datasets/pulls_2014-2018.csv')
-    assert correct_pulls_two.equals(pulls_two), \
-   "Read in 'datasets/pulls_2014-2018.csv' using read_csv()."
-    
-def test_pull_files():
-    correct_pull_files = pd.read_csv('datasets/pull_files.csv')
-    assert correct_pull_files.equals(pull_files), \
-    "Read in 'pull_files.csv' using read_csv()."
-```
-
-
-
-
-
-
-    3/3 tests passed
-
 
 
 
@@ -108,29 +80,6 @@ print(pulls.head())
 
 
 
-```python
-%%nose
-
-# one or more tests of the students code. 
-# The @solution should pass the tests.
-# The purpose of the tests is to try to catch common errors and to 
-# give the student a hint on how to resolve these errors.
-
-def test_pulls_length():
-    assert len(pulls) == 6200, \
-    'The DataFrame pulls does not have the correct number of rows. Did you correctly append pulls_one to pulls_two?'
-
-def test_pulls_type():
-    assert type(pulls['date'].dtype) is pd.core.dtypes.dtypes.DatetimeTZDtype, \
-    'The date for the pull requests is not the correct type.'
-```
-
-
-
-
-
-
-    2/2 tests passed
 
 
 
@@ -145,32 +94,8 @@ data = pulls.merge(pull_files, on = 'pid')
 ```
 
 
-```python
-%%nose
-
-# one or more tests of the students code. 
-# The @solution should pass the tests.
-# The purpose of the tests is to try to catch common errors and to 
-# give the student a hint on how to resolve these errors.
-
-def test_merge():
-    assert len(data) == 85588, \
-    'The merged DataFrame does not have the correct number of rows.'
-
-def test_merge_dataframes():
-    correct_data = pulls.merge(pull_files, on='pid')
-    also_correct_data = pull_files.merge(pulls, on='pid')
-    assert correct_data.equals(data) or \
-        also_correct_data.equals(data), \
-        "The DataFrames are not merged correctly."        
-```
 
 
-
-
-
-
-    2/2 tests passed
 
 
 
@@ -215,20 +140,7 @@ counts.plot(kind='bar', figsize = (12,4))
 
 
 
-```python
-%%nose
-    
-def test_group_and_count():
-    assert len(counts) == 74, \
-    "The data was not grouped correctly. The history only spans 74 months."
-```
 
-
-
-
-
-
-    1/1 tests passed
 
 
 
@@ -278,25 +190,7 @@ plt.hist(by_user)
 
 
 
-```python
-%%nose
 
-# one or more tests of the students code. 
-# The @solution should pass the tests.
-# The purpose of the tests is to try to catch common errors and to 
-# give the student a hint on how to resolve these errors.
-
-def test_by_user():
-    assert len(by_user) == 467 or len(by_user) == 464, \
-    'The grouping by user is not correct'
-```
-
-
-
-
-
-
-    1/1 tests passed
 
 
 
@@ -368,33 +262,7 @@ files
 
 
 
-```python
-%%nose
 
-# one or more tests of the students code. 
-# The @solution should pass the tests.
-# The purpose of the tests is to try to catch common errors and to 
-# give the student a hint on how to resolve these errors.
-
-def test_last_10():
-    assert len(last_10) == 10, \
-    'You need to select the last 10 pull requests.'
-
-def test_join():
-    assert len(joined_pr) == 34, \
-    'The join was not done correctly. You lost some pull requests in the process.'
-    
-def test_no_files():
-    assert len(files) == 34, \
-    'You did not select the right number of pull requests.'
-```
-
-
-
-
-
-
-    3/3 tests passed
 
 
 
@@ -427,29 +295,7 @@ print(author_counts.tail(3))
 
 
 
-```python
-%%nose
 
-# one or more tests of the students code. 
-# The @solution should pass the tests.
-# The purpose of the tests is to try to catch common errors and to 
-# give the student a hint on how to resolve these errors.
-
-def test_selecting_commits():
-    assert len(file_pr) == 30, \
-    'You did not filter the data on the right file.'
-    
-def test_author_counts():
-    assert len(author_counts) == 11, \
-    'The number of authors is not correct.'
-```
-
-
-
-
-
-
-    2/2 tests passed
 
 
 
@@ -483,33 +329,7 @@ users_last_10
 
 
 
-```python
-%%nose
 
-# one or more tests of the students code. 
-# The @solution should pass the tests.
-# The purpose of the tests is to try to catch common errors and to 
-# give the student a hint on how to resolve these errors.
-
-def test_join():
-    assert len(joined_pr) == len(file_pr), \
-    'The join was not done correctly. You lost some pull requests in the process.'
-    
-def test_file_pr():
-    assert len(joined_pr) == 30, \
-    'The file does not have the correct number of pull requests.'
-    
-def test_last_10():
-    assert len(users_last_10) == 6, \
-    'You did not select the right number of pull requests.'
-```
-
-
-
-
-
-
-    3/3 tests passed
 
 
 
@@ -562,29 +382,7 @@ counts_wide.plot.bar()
 
 
 
-```python
-%%nose
 
-# one or more tests of the students code. 
-# The @solution should pass the tests.
-# The purpose of the tests is to try to catch common errors and to 
-# give the student a hint on how to resolve these errors.
-
-def test_author_pr():
-    assert len(by_author) == 715, \
-    "The wrong number of pull requests have been selected."
-    
-def test_counts():
-    assert len(counts) == 11, \
-    'The data should span 6 years.'
-```
-
-
-
-
-
-
-    2/2 tests passed
 
 
 
@@ -635,37 +433,7 @@ by_file_wide.plot(kind='bar')
 
 
 
-```python
-%%nose
 
-# one or more tests of the students code. 
-# The @solution should pass the tests.
-# The purpose of the tests is to try to catch common errors and to 
-# give the student a hint on how to resolve these errors.
-
-def test_by_author():
-    assert len(by_author) == 16999, \
-    'Selecting by author did not produce the expected results.'
-    
-def test_by_file():
-    assert len(by_file) == 15, \
-    'Selecting by file did not produce the expected results.'
-    
-# def test_grouped():
-#     assert len(grouped) == 4, \
-#     'There should be only 3 years that matches our data.'
-    
-def test_by_file_wide():
-    assert len(by_file_wide) == 3, \
-    'There should be only 3 years that matches our data.'
-```
-
-
-
-
-
-
-    3/3 tests passed
 
 
 
